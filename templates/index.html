@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask-SocketIO Demo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.1/socket.io.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  </head>
+  <body>
+    <h1>Flask-SocketIO Demo</h1>
+    <p>Open the browser console to see the socket events.</p>
+    <button id="btn-send-event">Send Socket Event</button>
+    <script>
+      var socket = io('http://' + document.domain + ':' + location.port);
+      socket.on('connect', function() {
+        console.log('Socket connected.');
+        document.getElementById('btn-send-event').addEventListener('click', function() {
+          socket.emit('my_event', {data: 'hello world'});
+        });
+      });
+      socket.on('disconnect', function() {
+        console.log('Socket disconnected.');
+      });
+      socket.on('my_response', function(data) {
+        console.log('Received data:', data);
+      });
+    </script>
+  </body>
+</html>

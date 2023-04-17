@@ -1,0 +1,9 @@
+to run app:
+pip3 install -r requirements.txt
+python3 app.py
+
+to run with https via ngrok:
+update templates/index.html to construct socket endpoint with https instead of http
+python3 app.py
+(open 2nd terminal)
+ngrok http 5000
